@@ -228,14 +228,11 @@ export function SwotAIChat({ leadData }) {
                                     className="w-full h-full object-contain"
                                 />
                             </div>
-                            <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-red-100">
+                            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-red-100">
                                 Stark S.W.O.T.
                             </h1>
-                            <p className="text-lg text-white/70">
+                            <p className="text-l text-white/70">
                                 O Especialista em Analisar a Saúde da Sua Empresa
-                            </p>
-                            <p className="text-sm text-white/50">
-                                Podemos Iniciar a Conversa Agora
                             </p>
                         </motion.div>
                     </div>

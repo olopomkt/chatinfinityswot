@@ -67,7 +67,7 @@ const Textarea = React.forwardRef(
       )}>
         <textarea
           className={cn(
-            "flex min-h-[50px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm",
+            "flex min-h-[40px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm",
             "transition-all duration-200 ease-in-out",
             "placeholder:text-muted-foreground",
             "disabled:cursor-not-allowed disabled:opacity-50",
@@ -109,7 +109,7 @@ export function SwotAIChat({ leadData }) {
     const [isPending, startTransition] = useTransition();
     const { textareaRef, adjustHeight } = useAutoResizeTextarea({
         minHeight: 40,
-        maxHeight: 120,
+        maxHeight: 80,
     });
     const [inputFocused, setInputFocused] = useState(false);
     const messagesEndRef = useRef(null);
@@ -209,6 +209,8 @@ export function SwotAIChat({ leadData }) {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6 }}
                     className="w-full max-w-6xl h-[calc(100vh-6rem)] md:h-[calc(100vh-12rem)] backdrop-blur-xl bg-black/60 rounded-3xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+                    style={{ minHeight: '500px' }} // Adicione esta linha para garantir uma altura mínima
+
                     style={{
                         backdropFilter: 'blur(20px)',
                         border: '0.5px solid rgba(255, 255, 255, 0.1)',
@@ -364,7 +366,9 @@ export function SwotAIChat({ leadData }) {
                                         "text-white text-sm",
                                         "focus:outline-none",
                                         "placeholder:text-white/50",
-                                        "min-h-[40px]"
+                                        "min-h-[40px]", // Garante a altura mínima do input
+                                        "max-h-[80px]", // Garante a altura máxima do input
+
                                     )}
                                 />
                                 <div className="flex justify-end items-center mt-3">

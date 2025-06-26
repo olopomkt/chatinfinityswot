@@ -219,9 +219,9 @@ export function SwotAIChat({ leadData }) {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            className="space-y-3"
+                            className="space-y-2"
                         >
-                            <div className="mx-auto w-16 h-16 flex items-center justify-center mb-4">
+                            <div className="mx-auto w-10 h-10 flex items-center justify-center mb-4">
                                 <img 
                                     src={logoIcon} 
                                     alt="Stark S.W.O.T. Logo" 

@@ -221,19 +221,22 @@ export function SwotAIChat({ leadData }) {
                             transition={{ duration: 0.6 }}
                             className="space-y-2"
                         >
-                            <div className="mx-auto w-10 h-10 flex items-center justify-center mb-4">
+                            <div className="flex items-center justify-center gap-4 mb-4">
+                            <div className="w-12 h-12 flex items-center justify-center">
                                 <img 
                                     src={logoIcon} 
                                     alt="Stark S.W.O.T. Logo" 
                                     className="w-full h-full object-contain"
                                 />
                             </div>
-                            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-red-100">
-                                Stark S.W.O.T.
-                            </h1>
-                            <p className="text-l text-white/70">
-                                O Especialista em Analisar a Saúde da Sua Empresa
-                            </p>
+                            <div>
+                                <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-red-100 leading-tight">
+                                    Stark S.W.O.T.
+                                </h1>
+                                <p className="text-l text-white/70 leading-tight">
+                                    O Especialista em Analisar a Saúde da Sua Empresa
+                                </p>
+                            </div>
                         </motion.div>
                     </div>
 

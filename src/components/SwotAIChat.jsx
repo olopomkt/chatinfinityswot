@@ -67,7 +67,7 @@ const Textarea = React.forwardRef(
       )}>
         <textarea
           className={cn(
-            "flex min-h-[40px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm",
+            "flex min-h-[35px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm",
             "transition-all duration-200 ease-in-out",
             "placeholder:text-muted-foreground",
             "disabled:cursor-not-allowed disabled:opacity-50",
@@ -108,8 +108,8 @@ export function SwotAIChat({ leadData }) {
     const [isTyping, setIsTyping] = useState(false);
     const [isPending, startTransition] = useTransition();
     const { textareaRef, adjustHeight } = useAutoResizeTextarea({
-        minHeight: 40,
-        maxHeight: 80,
+        minHeight: 35,
+        maxHeight: 70,
     });
     const [inputFocused, setInputFocused] = useState(false);
     const messagesEndRef = useRef(null);
@@ -209,6 +209,12 @@ export function SwotAIChat({ leadData }) {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6 }}
                     className="w-full max-w-6xl h-[calc(100vh-6rem)] md:h-[calc(100vh-12rem)] backdrop-blur-xl bg-black/60 rounded-3xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+                    style={{
+                        backdropFilter: 'blur(20px)',
+                        border: '0.5px solid rgba(255, 255, 255, 0.1)',
+                        minHeight: '500px',
+                    }}
+
                     style={{ minHeight: '500px' }} // Adicione esta linha para garantir uma altura mínima
 
                     style={{
@@ -244,25 +250,31 @@ export function SwotAIChat({ leadData }) {
                     </div>
 
                     {/* Messages Area */}
-                    <div className="flex-1 overflow-hidden">
+                    <div className="flex-1 flex flex-col overflow-hidden">
                         {/* CTA Inicial Fixa */}
-                        <div className="p-6 border-b border-white/5">
+                         <div className="flex-shrink-0 p-6 border-b border-white/5">
                             <div className="text-center">
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5 }}
                                     className="bg-gradient-to-r from-red-600/20 to-red-500/20 backdrop-blur-sm rounded-2xl p-4 border border-red-500/20"
-                                >
-                                    <p className="text-white/90 text-sm font-medium mb-2">
-                                        🚀 Bem-vindo ao Stark S.W.O.T.!
-                                    </p>
-                                    <p className="text-white/70 text-xs">
-                                        Sua empresa está a poucos passos do sucesso. Envie uma mensagem para começarmos a análise!
-                                    </p>
-                                </motion.div>
-                            </div>
-                        </div>
+            >
+                        <p className="text-white/90 text-sm font-medium mb-2">
+                            🚀 Bem-vindo ao Stark S.W.O.T.!
+                        </p>
+                        <p className="text-white/70 text-xs">
+                        Sua empresa está a poucos passos do sucesso. Envie uma mensagem para começarmos a análise!
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
+    
+                    <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                    {/* mensagens aqui */}
+                </div>
+            </div>
+
                         
                         <div className="h-full overflow-y-auto p-6 space-y-4">
                             {messages.map((message) => (
@@ -366,8 +378,8 @@ export function SwotAIChat({ leadData }) {
                                         "text-white text-sm",
                                         "focus:outline-none",
                                         "placeholder:text-white/50",
-                                        "min-h-[40px]", // Garante a altura mínima do input
-                                        "max-h-[80px]", // Garante a altura máxima do input
+                                        "min-h-[35px]", // Garante a altura mínima do input
+                                        "max-h-[70px]", // Garante a altura máxima do input
 
                                     )}
                                 />

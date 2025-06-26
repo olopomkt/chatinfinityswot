@@ -2,7 +2,6 @@ import { useEffect, useRef, useCallback, useTransition } from "react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
-    CircleUserRound,
     SendIcon,
     LoaderIcon,
 } from "lucide-react";
@@ -142,7 +141,7 @@ export function SwotAIChat({ leadData }) {
                     type: 'chat_message',
                     message: message,
                     leadData: leadData,
-                    timestamp: new Date().toISOString()
+                    timestamp: new Date( ).toISOString()
                 }),
             });
 
@@ -176,7 +175,6 @@ export function SwotAIChat({ leadData }) {
                 setIsTyping(true);
             });
 
-            // Simular delay de digitação
             setTimeout(async () => {
                 const aiResponse = await sendToN8N(messageText);
                 
@@ -214,13 +212,6 @@ export function SwotAIChat({ leadData }) {
                         border: '0.5px solid rgba(255, 255, 255, 0.1)',
                         minHeight: '500px',
                     }}
-
-                    style={{ minHeight: '500px' }} // Adicione esta linha para garantir uma altura mínima
-
-                    style={{
-                        backdropFilter: 'blur(20px)',
-                        border: '0.5px solid rgba(255, 255, 255, 0.1)',
-                    }}
                 >
                     {/* Header */}
                     <div className="relative z-10 p-6 text-center border-b border-white/10 bg-black/20">
@@ -233,7 +224,7 @@ export function SwotAIChat({ leadData }) {
                             <div className="mx-auto w-16 h-16 flex items-center justify-center mb-4">
                                 <img 
                                     src={logoIcon} 
-                                    alt="Start S.W.O.T. Logo" 
+                                    alt="Stark S.W.O.T. Logo" 
                                     className="w-full h-full object-contain"
                                 />
                             </div>
@@ -249,34 +240,29 @@ export function SwotAIChat({ leadData }) {
                         </motion.div>
                     </div>
 
-                    {/* Messages Area */}
+                    {/* Messages Area - ESTRUTURA CORRIGIDA */}
                     <div className="flex-1 flex flex-col overflow-hidden">
                         {/* CTA Inicial Fixa */}
-                         <div className="flex-shrink-0 p-6 border-b border-white/5">
+                        <div className="flex-shrink-0 p-6 border-b border-white/5">
                             <div className="text-center">
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5 }}
                                     className="bg-gradient-to-r from-red-600/20 to-red-500/20 backdrop-blur-sm rounded-2xl p-4 border border-red-500/20"
-            >
-                        <p className="text-white/90 text-sm font-medium mb-2">
-                            🚀 Bem-vindo ao Stark S.W.O.T.!
-                        </p>
-                        <p className="text-white/70 text-xs">
-                        Sua empresa está a poucos passos do sucesso. Envie uma mensagem para começarmos a análise!
-                        </p>
-                    </motion.div>
-                </div>
-            </div>
-    
-                    <div className="flex-1 overflow-y-auto p-6 space-y-4">
-                    {/* mensagens aqui */}
-                </div>
-            </div>
-
+                                >
+                                    <p className="text-white/90 text-sm font-medium mb-2">
+                                        🚀 Bem-vindo ao Stark S.W.O.T.!
+                                    </p>
+                                    <p className="text-white/70 text-xs">
+                                        Sua empresa está a poucos passos do sucesso. Envie uma mensagem para começarmos a análise!
+                                    </p>
+                                </motion.div>
+                            </div>
+                        </div>
                         
-                        <div className="h-full overflow-y-auto p-6 space-y-4">
+                        {/* Área de Mensagens - AGORA COM FLEX-1 */}
+                        <div className="flex-1 overflow-y-auto p-6 space-y-4">
                             {messages.map((message) => (
                                 <motion.div
                                     key={message.id}
@@ -299,7 +285,7 @@ export function SwotAIChat({ leadData }) {
                                                 <div className="w-6 h-6 flex items-center justify-center">
                                                     <img 
                                                         src={logoIcon} 
-                                                        alt="Start S.W.O.T." 
+                                                        alt="Stark S.W.O.T." 
                                                         className="w-full h-full object-contain"
                                                     />
                                                 </div>
@@ -331,7 +317,7 @@ export function SwotAIChat({ leadData }) {
                                             <div className="w-6 h-6 flex items-center justify-center">
                                                 <img 
                                                     src={logoIcon} 
-                                                    alt="Start S.W.O.T." 
+                                                    alt="Stark S.W.O.T." 
                                                     className="w-full h-full object-contain"
                                                 />
                                             </div>
@@ -378,9 +364,7 @@ export function SwotAIChat({ leadData }) {
                                         "text-white text-sm",
                                         "focus:outline-none",
                                         "placeholder:text-white/50",
-                                        "min-h-[35px]", // Garante a altura mínima do input
-                                        "max-h-[70px]", // Garante a altura máxima do input
-
+                                        "min-h-[35px]"
                                     )}
                                 />
                                 <div className="flex justify-end items-center mt-3">
@@ -411,4 +395,3 @@ export function SwotAIChat({ leadData }) {
         </div>
     );
 }
-

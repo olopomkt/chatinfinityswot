@@ -319,7 +319,7 @@ export function SwotAIChat({ leadData }) {
                     </div>
 
                     {/* Input Area */}
-                    <div className="relative z-10 p-6 border-t border-white/10 bg-black/20">
+                    <div className="relative z-7 p-6 border-t border-white/10 bg-black/20">
                         <motion.div 
                             className="relative backdrop-blur-xl bg-black/20 rounded-2xl border border-white/20 shadow-xl"
                             initial={{ scale: 0.98 }}
@@ -334,7 +334,7 @@ export function SwotAIChat({ leadData }) {
                                         setValue(e.target.value);
                                         adjustHeight();
                                     }}
-                                    onKeyDown={handleKeyDown}
+                                    
                                     onFocus={() => setInputFocused(true)}
                                     onBlur={() => setInputFocused(false)}
                                     placeholder="Digite sua mensagem sobre a sua empresa..."

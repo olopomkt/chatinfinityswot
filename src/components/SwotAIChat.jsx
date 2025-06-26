@@ -221,7 +221,7 @@ export function SwotAIChat({ leadData }) {
                             transition={{ duration: 0.6 }}
                             className="space-y-2"
                         >
-                            <div className="flex items-center justify-center gap-4 mb-4">
+                            <div className="flex items-center justify-center gap-4 mb-2">
                             <div className="w-12 h-12 flex items-center justify-center">
                                 <img 
                                     src={logoIcon} 
@@ -237,6 +237,7 @@ export function SwotAIChat({ leadData }) {
                                     O Especialista em Analisar a Saúde da Sua Empresa
                                 </p>
                             </div>
+                        </div>
                         </motion.div>
                     </div>
 

@@ -99,7 +99,7 @@ export function SwotAIChat({ leadData }) {
     const [messages, setMessages] = useState([
         {
             id: '1',
-            text: 'Para começar, basta enviar qualquer saudação! Sua empresa está a poucos passos do sucesso, vamos lá!',
+            text: '🚀 Bem-vindo ao Stark S.W.O.T.! Para começar, basta enviar qualquer saudação! Sua empresa está a poucos passos do sucesso, vamos lá!',
             isUser: false,
             timestamp: new Date()
         }
@@ -243,24 +243,6 @@ export function SwotAIChat({ leadData }) {
 
                     {/* Messages Area - ESTRUTURA CORRIGIDA */}
                     <div className="flex-1 flex flex-col overflow-hidden">
-                        {/* CTA Inicial Fixa */}
-                        <div className="flex-shrink-0 p-6 border-b border-white/5">
-                            <div className="text-center">
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="bg-gradient-to-r from-red-600/20 to-red-500/20 backdrop-blur-sm rounded-2xl p-4 border border-red-500/20"
-                                >
-                                    <p className="text-white/90 text-sm font-medium mb-2">
-                                        🚀 Bem-vindo ao Stark S.W.O.T.!
-                                    </p>
-                                    <p className="text-white/70 text-xs">
-                                        Sua empresa está a poucos passos do sucesso. Envie uma mensagem para começarmos a análise!
-                                    </p>
-                                </motion.div>
-                            </div>
-                        </div>
                         
                         {/* Área de Mensagens - AGORA COM FLEX-1 */}
                         <div className="flex-1 overflow-y-auto p-6 space-y-4">

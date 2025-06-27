@@ -399,12 +399,7 @@ export function SwotAIChat({ leadData }) {
                                         <SendIcon className="w-4 h-4" />
                                     )}
                                 </motion.button>
-                                </div>
                             </div>
                         </motion.div>
                     </div>
-                </motion.div>
-            </div>
-        </div>
-    );
-}
+                </div>

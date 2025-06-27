@@ -404,3 +404,6 @@ export function SwotAIChat({ leadData }) {
                     </div>
                 </motion.div>
             </div>
+        </div>
+    );
+}

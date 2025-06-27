@@ -355,9 +355,10 @@ export function SwotAIChat({ leadData }) {
                                         "text-white text-sm",
                                         "focus:outline-none",
                                         "placeholder:text-white/50",
-                                        "min-h-[20px]"
+                                        "min-h-[20px]",
                                         "custom-scrollbar-small"
                                     )}
+
                                 />
                                 <div className="flex justify-end items-center mt-3">
                                     <motion.button

@@ -108,14 +108,21 @@ export function SwotAIChat({ leadData }) {
     const [isPending, startTransition] = useTransition();
     const { textareaRef, adjustHeight } = useAutoResizeTextarea({
         minHeight: 30,
-        maxHeight: 40,
+        maxHeight: 60,
     });
     const [inputFocused, setInputFocused] = useState(false);
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
+    // Usar setTimeout para garantir que o DOM foi atualizado
+    setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ 
+            behavior: "smooth",
+            block: "end"
+        });
+    }, 100);
+};
+
 
     useEffect(() => {
         scrollToBottom();
@@ -175,6 +182,7 @@ export function SwotAIChat({ leadData }) {
             };
 
             setMessages(prev => [...prev, userMessage]);
+            setTimeout(() => scrollToBottom(), 200);
             const messageText = value.trim();
             setValue("");
             adjustHeight(true);
@@ -283,7 +291,15 @@ export function SwotAIChat({ leadData }) {
                                                 <span className="text-sm font-medium text-red-400">Stark S.W.O.T.</span>
                                             </div>
                                         )}
-                                        <p className="text-sm leading-relaxed">{message.text}</p>
+                                        <p className="text-sm leading-relaxed">
+                                            {message.text.split("\n").map((line, index) => (
+                                                <React.Fragment key={index}>
+                                                    {line}
+                                                    {index < message.text.split("\n").length - 1 && <br />}
+                                                </React.Fragment>
+                                            ))}
+                                        </p>
+
                                         <p className={cn(
                                             "text-xs mt-2 opacity-60",
                                             message.isUser ? "text-red-100" : "text-white/60"
@@ -334,57 +350,56 @@ export function SwotAIChat({ leadData }) {
                             animate={{ scale: 1 }}
                             transition={{ delay: 0.1 }}
                         >
-                            <div className="p-4">
-                                <Textarea
-                                    ref={textareaRef}
-                                    value={value}
-                                    onChange={(e) => {
-                                        setValue(e.target.value);
-                                        adjustHeight();
-                                    }}
-                                    onKeyDown={handleKeyDown}
-                                    onFocus={() => setInputFocused(true)}
-                                    onBlur={() => setInputFocused(false)}
-                                    placeholder="Digite sua mensagem sobre a sua empresa..."
-                                    containerClassName="w-full"
-                                    className={cn(
-                                        "w-full px-4 py-3",
-                                        "resize-none",
-                                        "bg-transparent",
-                                        "border-none",
-                                        "text-white text-sm",
-                                        "focus:outline-none",
-                                        "placeholder:text-white/50",
-                                        "min-h-[20px]",
-                                        "custom-scrollbar-small"
-                                    )}
-
-                                />
-                                <div className="flex justify-end items-center mt-3">
-                                    <motion.button
-                                        onClick={handleSendMessage}
+                            <div className="p-3 flex items-end gap-3">
+                                {/* Textarea ocupa todo o espaço disponível */}
+                                <div className="flex-1">
+                                    <Textarea
+                                        ref={textareaRef}
+                                        value={value}
+                                        onChange={(e) => {
+                                            setValue(e.target.value);
+                                            adjustHeight();
+                                        }}
+                                        onKeyDown={handleKeyDown}
+                                        onFocus={() => setInputFocused(true)}
+                                        onBlur={() => setInputFocused(false)}
+                                        placeholder="Digite sua mensagem sobre a sua empresa..."
+                                        containerClassName="w-full"
                                         className={cn(
-                                            "p-3 rounded-full bg-red-600 text-white transition-all duration-200",
-                                            "hover:bg-red-700 hover:shadow-lg",
-                                            "disabled:opacity-50 disabled:cursor-not-allowed",
-                                            "shadow-lg"
+                                            "w-full px-4 py-2",
+                                            "resize-none",
+                                            "bg-transparent",
+                                            "border-none",
+                                            "text-white text-sm",
+                                            "focus:outline-none",
+                                            "placeholder:text-white/50",
+                                            "min-h-[20px]",
+                                            "max-h-[80px]",
+                                            "custom-scrollbar-small"
                                         )}
-                                        disabled={!value.trim() || isTyping}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        {isTyping ? (
-                                            <LoaderIcon className="w-5 h-5 animate-spin" />
-                                        ) : (
-                                            <SendIcon className="w-5 h-5" />
-                                        )}
-                                    </motion.button>
+                                    />
                                 </div>
+                                
+                                {/* Botão alinhado com a base do textarea */}
+                                <motion.button
+                                    onClick={handleSendMessage}
+                                    className={cn(
+                                        "p-2.5 rounded-full bg-red-600 text-white transition-all duration-200 flex-shrink-0",
+                                        "hover:bg-red-700 hover:shadow-lg",
+                                        "disabled:opacity-50 disabled:cursor-not-allowed",
+                                        "shadow-lg"
+                                    )}
+                                    disabled={!value.trim() || isTyping}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    {isTyping ? (
+                                        <LoaderIcon className="w-4 h-4 animate-spin" />
+                                    ) : (
+                                        <SendIcon className="w-4 h-4" />
+                                    )}
+                                </motion.button>
                             </div>
                         </motion.div>
                     </div>
-                </motion.div>
-            </div>
-        </div>
-    );
-}
+

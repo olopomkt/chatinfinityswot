@@ -139,7 +139,7 @@ export function SwotAIChat({ leadData }) {
 
     const sendToN8N = async (message) => {
     try {
-        const response = await fetch('https://webhook.infinityacademyb2b.com.br/webhook/chat-netlify', {
+        const response = await fetch('https://n8n.infinityacademyb2b.com.br/webhook-test/chat-netlify', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

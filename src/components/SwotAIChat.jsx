@@ -226,7 +226,7 @@ export function SwotAIChat({ leadData }) {
                     style={{
                         backdropFilter: 'blur(20px)',
                         border: '0.5px solid rgba(255, 255, 255, 0.1)',
-                        minHeight: '500px',
+                        minHeight: '520px',
                     }}
                 >
                     {/* Header */}

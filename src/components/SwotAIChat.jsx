@@ -131,31 +131,39 @@ export function SwotAIChat({ leadData }) {
     };
 
     const sendToN8N = async (message) => {
-        try {
-            const response = await fetch('https://n8n.infinityacademyb2b.com.br/webhook-test/chat-netlify', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    type: 'chat_message',
-                    message: message,
-                    leadData: leadData,
-                    timestamp: new Date( ).toISOString()
-                }),
-            });
+    try {
+        const response = await fetch('https://n8n.infinityacademyb2b.com.br/webhook-test/chat-netlify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                type: 'chat_message',
+                message: message,
+                leadData: leadData,
+                timestamp: new Date( ).toISOString()
+            }),
+        });
 
-            if (response.ok) {
-                const data = await response.json();
-                return data.response || "Desculpe, não consegui processar sua mensagem. Tente novamente.";
-            } else {
-                return "Desculpe, estou com dificuldades técnicas. Tente novamente em alguns instantes.";
+        if (response.ok) {
+            // MUDANÇA: Lê como TEXT em vez de JSON
+            const responseText = await response.text();
+            
+            // Se a resposta não estiver vazia, retorna ela
+            if (responseText && responseText.trim()) {
+                return responseText.trim();
             }
-        } catch (error) {
-            console.error('Erro ao enviar mensagem:', error);
-            return "Desculpe, não consegui me conectar. Verifique sua conexão e tente novamente.";
+            
+            return "Desculpe, não consegui processar sua mensagem. Tente novamente.";
+        } else {
+            return "Desculpe, estou com dificuldades técnicas. Tente novamente em alguns instantes.";
         }
-    };
+    } catch (error) {
+        console.error('Erro ao enviar mensagem:', error);
+        return "Desculpe, não consegui me conectar. Verifique sua conexão e tente novamente.";
+    }
+};
+
 
     const handleSendMessage = async () => {
         if (value.trim()) {
@@ -245,7 +253,7 @@ export function SwotAIChat({ leadData }) {
                     <div className="flex-1 flex flex-col overflow-hidden">
                         
                         {/* Área de Mensagens - AGORA COM FLEX-1 */}
-                        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                        <div className="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
                             {messages.map((message) => (
                                 <motion.div
                                     key={message.id}
@@ -334,7 +342,7 @@ export function SwotAIChat({ leadData }) {
                                         setValue(e.target.value);
                                         adjustHeight();
                                     }}
-                                    
+                                    onKeyDown={handleKeyDown}
                                     onFocus={() => setInputFocused(true)}
                                     onBlur={() => setInputFocused(false)}
                                     placeholder="Digite sua mensagem sobre a sua empresa..."
@@ -348,6 +356,7 @@ export function SwotAIChat({ leadData }) {
                                         "focus:outline-none",
                                         "placeholder:text-white/50",
                                         "min-h-[20px]"
+                                        "custom-scrollbar-small"
                                     )}
                                 />
                                 <div className="flex justify-end items-center mt-3">

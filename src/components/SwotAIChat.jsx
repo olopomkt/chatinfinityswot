@@ -66,7 +66,7 @@ const Textarea = React.forwardRef(
       )}>
         <textarea
           className={cn(
-            "flex min-h-[35px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm",
+            "flex min-h-[20px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm",
             "transition-all duration-200 ease-in-out",
             "placeholder:text-muted-foreground",
             "disabled:cursor-not-allowed disabled:opacity-50",
@@ -107,8 +107,8 @@ export function SwotAIChat({ leadData }) {
     const [isTyping, setIsTyping] = useState(false);
     const [isPending, startTransition] = useTransition();
     const { textareaRef, adjustHeight } = useAutoResizeTextarea({
-        minHeight: 35,
-        maxHeight: 70,
+        minHeight: 30,
+        maxHeight: 40,
     });
     const [inputFocused, setInputFocused] = useState(false);
     const messagesEndRef = useRef(null);
@@ -319,7 +319,7 @@ export function SwotAIChat({ leadData }) {
                     </div>
 
                     {/* Input Area */}
-                    <div className="relative z-7 p-6 border-t border-white/10 bg-black/20">
+                    <div className="relative z-8 p-6 border-t border-white/10 bg-black/20">
                         <motion.div 
                             className="relative backdrop-blur-xl bg-black/20 rounded-2xl border border-white/20 shadow-xl"
                             initial={{ scale: 0.98 }}
@@ -347,7 +347,7 @@ export function SwotAIChat({ leadData }) {
                                         "text-white text-sm",
                                         "focus:outline-none",
                                         "placeholder:text-white/50",
-                                        "min-h-[35px]"
+                                        "min-h-[20px]"
                                     )}
                                 />
                                 <div className="flex justify-end items-center mt-3">

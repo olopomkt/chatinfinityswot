@@ -118,3 +118,41 @@
     @apply bg-background text-foreground;
   }
 }
+/* Scrollbar personalizada para área de conversa */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #dc2626, #b91c1c);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #b91c1c, #991b1b);
+}
+
+/* Scrollbar menor para input */
+.custom-scrollbar-small::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar-small::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+}
+
+.custom-scrollbar-small::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #dc2626, #b91c1c);
+    border-radius: 6px;
+}
+
+.custom-scrollbar-small::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #b91c1c, #991b1b);
+}

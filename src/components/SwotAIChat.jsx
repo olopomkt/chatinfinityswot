@@ -210,11 +210,11 @@ export function SwotAIChat({ leadData }) {
                     style={{
                         backdropFilter: 'blur(20px)',
                         border: '0.5px solid rgba(255, 255, 255, 0.1)',
-                        minHeight: '500px',
+                        minHeight: '600px',
                     }}
                 >
                     {/* Header */}
-                    <div className="relative z-10 p-6 text-center border-b border-white/10 bg-black/20">
+                    <div className="relative z-10 p-4 text-center border-b border-white/10 bg-black/20">
                         <motion.div
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -264,7 +264,7 @@ export function SwotAIChat({ leadData }) {
                                             : "bg-black/60 text-white mr-4 border border-white/10"
                                     )}>
                                         {!message.isUser && (
-                                            <div className="flex items-center gap-3 mb-3">
+                                            <div className="flex items-center gap-1 mb-1">
                                                 <div className="w-6 h-6 flex items-center justify-center">
                                                     <img 
                                                         src={logoIcon} 
@@ -277,7 +277,7 @@ export function SwotAIChat({ leadData }) {
                                         )}
                                         <p className="text-sm leading-relaxed">{message.text}</p>
                                         <p className={cn(
-                                            "text-xs mt-3 opacity-60",
+                                            "text-xs mt-2 opacity-60",
                                             message.isUser ? "text-red-100" : "text-white/60"
                                         )}>
                                             {message.timestamp.toLocaleTimeString('pt-BR', { 
@@ -319,7 +319,7 @@ export function SwotAIChat({ leadData }) {
                     </div>
 
                     {/* Input Area */}
-                    <div className="relative z-8 p-6 border-t border-white/10 bg-black/20">
+                    <div className="relative z-8 p-3 border-t border-white/10 bg-black/20">
                         <motion.div 
                             className="relative backdrop-blur-xl bg-black/20 rounded-2xl border border-white/20 shadow-xl"
                             initial={{ scale: 0.98 }}
